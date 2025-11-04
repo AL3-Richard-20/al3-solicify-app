@@ -14,7 +14,7 @@ export default function Login(){
 
             <div className="mr-7 ml-7">
 
-                <h4 className="font-bold uppercase text-center mt-7 mb-8 text-2xl">Buy Me This!</h4>
+                <h4 className="font-bold uppercase text-center mt-7 mb-8 text-2xl">My Wishlist</h4>
 
                 <Form />
 

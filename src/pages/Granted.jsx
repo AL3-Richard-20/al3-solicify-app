@@ -2,6 +2,7 @@ import { useState } from "react"
 
 // Components
 import Banner from '../components/Banner.jsx'
+import TopNav from '../components/TopNav.jsx'
 import MobileNav from '../components/MobileNav.jsx'
 
 export default function Granted(){
@@ -10,6 +11,10 @@ export default function Granted(){
 
     return (
         <div>
+
+            {/* =================== TOP NAVIGATION ================= */}
+                <TopNav />
+            {/* =================== TOP NAVIGATION END ============= */}
 
             {/* =================== BANNER =================== */}
                 <Banner bannertype={bannertype} />
