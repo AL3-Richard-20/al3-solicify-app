@@ -71,7 +71,7 @@ export default function Connections(){
                             <input 
                                 type="search" 
                                 id="search" 
-                                className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                                className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" 
                                 placeholder="Search" 
                                 autoComplete="off" 
                                 required />
@@ -88,7 +88,7 @@ export default function Connections(){
                         </div>
                         <div className="flow-root m-4 p-2">
 
-                            <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
+                            <ul role="list" className="divide-y divide-gray-200">
 
                                 {/* ========== CONNECTION ITEM ============ */}
                                     { 
@@ -103,20 +103,20 @@ export default function Connections(){
                                                             alt="User image" />
                                                     </div>
                                                     <div className="flex-1 items-center min-w-0 ms-4">
-                                                        <h4 className="text-lg font-medium text-gray-900 truncate dark:text-white">
+                                                        <h4 className="text-lg font-medium text-gray-900 truncate">
                                                             { conn_items.UserFullname }
                                                         </h4>
-                                                        <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                                                        <p className="text-sm text-gray-500 truncate">
                                                             Wishlists: { conn_items.TotalWishlists }
                                                         </p>
-                                                        <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                                                        <p className="text-sm text-gray-500 truncate">
                                                             Wish Granted: { conn_items.TotalGranted }
                                                         </p>
-                                                        <button type="button" className="mt-3 text-white uppercase bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                                        <button type="button" className="mt-3 text-white uppercase bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 me-2 mb-2">
                                                             View Profile
                                                         </button>
                                                     </div>
-                                                    <div className="text-base font-semibold text-gray-900 dark:text-white">
+                                                    <div className="text-base font-semibold text-gray-900">
                                                         <FontAwesomeIcon icon={faEllipsisV} />
                                                     </div>
                                                 </div>

@@ -18,7 +18,7 @@ export default function TopNav(){
             </div>
             <button 
                 type="button" 
-                className="mt-3 uppercase bg-gray-100 hover:bg-gray-200 font-medium rounded-lg px-3 py-2 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                className="mt-3 uppercase bg-gray-100 hover:bg-gray-200 font-medium rounded-lg px-3 py-2 me-2 mb-2 focus:outline-none">
                 <FontAwesomeIcon icon={ faBell } />
             </button>
         </div>
