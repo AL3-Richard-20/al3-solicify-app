@@ -9,9 +9,10 @@ import NotFound from './pages/NotFound.jsx'
 import WishList from './pages/WishList.jsx'
 import Granted from './pages/Granted.jsx'
 import Connections from './pages/Connections.jsx'
+import NewWishList from './pages/NewWishList.jsx'
 
 function App() {
-
+  
   return (
     ReactDOM.createRoot(root).render(
 
@@ -30,6 +31,8 @@ function App() {
           <Route path="/granted" element={<Granted />} />
 
           <Route path="/connections" element={<Connections />} />
+
+          <Route path="/newwishlist" element={<NewWishList />} />
 
           <Route path="*" element={<NotFound />} />
 
