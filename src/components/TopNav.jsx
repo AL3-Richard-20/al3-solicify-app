@@ -9,7 +9,7 @@ export default function TopNav(){
             <div className="flex align-items-center">
                 <img 
                     src="../../src/assets/images/user-139.png" 
-                    class="w-10 h-10 rounded" 
+                    className="w-10 h-10 rounded" 
                     alt="Profile Image" />
                 <div className="ml-4">
                     <h4>Hello,</h4>

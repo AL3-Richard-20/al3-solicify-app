@@ -4,6 +4,12 @@ import { useState } from "react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsisV, faSearch } from '@fortawesome/free-solid-svg-icons'
 
+
+// Flowbite
+import { Button, createTheme, ThemeProvider } from 'flowbite-react'
+import customTheme from '../styles/tailwind-theme.jsx'
+
+
 // Components
 import Banner from '../components/Banner.jsx'
 import TopNav from '../components/TopNav.jsx'
@@ -63,7 +69,7 @@ export default function Connections(){
 
                 {/* ============== SEARCH BAR =============== */}
                     <form className="m-4">   
-                        <label for="search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                        <label htmlFor="search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                         <div className="relative">
                             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                                 <FontAwesomeIcon icon={faSearch} />
@@ -112,9 +118,11 @@ export default function Connections(){
                                                         <p className="text-sm text-gray-500 truncate">
                                                             Wish Granted: { conn_items.TotalGranted }
                                                         </p>
-                                                        <button type="button" className="mt-3 text-white uppercase bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 me-2 mb-2">
-                                                            View Profile
-                                                        </button>
+                                                        <ThemeProvider theme={ customTheme }>
+                                                            <Button type="button" color="primary" className="mt-3 text-white uppercase font-medium rounded-lg text-sm px-3 py-2 me-2 mb-2">
+                                                                View Profile
+                                                            </Button>
+                                                        </ThemeProvider>
                                                     </div>
                                                     <div className="text-base font-semibold text-gray-900">
                                                         <FontAwesomeIcon icon={faEllipsisV} />
