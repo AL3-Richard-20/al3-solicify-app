@@ -5,7 +5,12 @@ import { NavLink } from "react-router";
 
 // Assets
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEllipsisV, faPlus, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { 
+    faArrowLeft, 
+    faPaperclip,
+    faClose, 
+    faPlus 
+} from '@fortawesome/free-solid-svg-icons'
 import { useDropzone } from 'react-dropzone';
 
 
@@ -18,83 +23,24 @@ import customTheme from '../styles/tailwind-theme.jsx'
 // import Banner from '../components/Banner.jsx'
 import TopNav from '../components/TopNav.jsx'
 import MobileNav from '../components/MobileNav.jsx'
+import { DropzoneComponent } from "../components/Dropzone.jsx";
 
-function DropzoneComponent() {
+
+export default function WishList(){
 
     const [files, setFiles] = useState([]);
 
-    const onDrop = useCallback(acceptedFiles => {
+    function submitWishlist(e){
 
-        if(acceptedFiles?.length){
-
-            const mappedFiles = acceptedFiles.map(file => Object.assign(file, {
-                preview: URL.createObjectURL(file)
-            }));
-
-            setFiles(mappedFiles);
-        }
-        // This is where you process the files. 
-        // You can set them to state, log them, or prepare for upload.
-        console.log(acceptedFiles); 
-    }, []);
-
-
-
-    // ============= Functions ================
-        function cleanUpPreviews(files){
-            
-            return () => {
-                files.forEach(file => URL.revokeObjectURL(file.preview));
-            };
-        }
-    // ============= Functions END ============
+        e.preventDefault()
     
+        const formData = new FormData(e.target); // Create a FormData object from the form
+        const data = Object.fromEntries(formData.entries()); // Convert FormData to a plain object
 
-
-    // ============= Hooks =============
-        useEffect(() => {
-            cleanUpPreviews(files)
-        }, [files]);
-    // ============= Hooks END =========
-
-
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({
-        onDrop,
-        accept: { 'image/*': [] }
-    });
-
-    return (
-        <div>
-            <div className="flex items-center justify-center w-full" {...getRootProps()}>
-                <input {...getInputProps()} />
-                <label className="flex flex-col items-center justify-center w-full h-64 bg-neutral-secondary-medium border border-dashed border-default-strong rounded-base cursor-pointer hover:bg-neutral-tertiary-medium">
-                    {
-                        isDragActive ?
-                        <p>Release to drop the files here</p> :
-                        <div className="flex flex-col items-center justify-center text-body pt-5 pb-6">
-                            <svg className="w-8 h-8 mb-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h3a3 3 0 0 0 0-6h-.025a5.56 5.56 0 0 0 .025-.5A5.5 5.5 0 0 0 7.207 9.021C7.137 9.017 7.071 9 7 9a4 4 0 1 0 0 8h2.167M12 19v-9m0 0-2 2m2-2 2 2"/></svg>
-                            <p className="mb-2 text-sm"><span className="font-semibold">Click to upload</span> or drag and drop</p>
-                            <p className="text-xs">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
-                        </div>
-                    }
-                </label>
-            </div>
-            <div className="mt-4 mb-4 flex flex-wrap gap-4 justify-center">
-                {files.map(file => (
-                    <div key={file.name} className="w-32 h-32 border rounded overflow-hidden flex items-center justify-center">
-                        <img
-                            src={file.preview}
-                            alt={file.name}
-                            className="object-cover w-full h-full rounded"
-                        />
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
-}
-
-export default function WishList(){
+        data.item_files = files
+    
+        console.log(data); 
+    }
 
     return (
         <div>
@@ -115,26 +61,40 @@ export default function WishList(){
                         </h4>
                     </div>
 
-                    <form className="p-4" method="POST">
+                    <form className="p-4" method="POST" onSubmit={ submitWishlist }>
 
                         <div className="form-group">
-                            <p><b>item Name: <span className="text-red-700">(*)</span></b></p>
+                            <p><b>Item Name: <span className="text-red-700">(*)</span></b></p>
                             <input 
                                 type="text" 
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 my-4" 
                                 placeholder="Input item name here" 
+                                name="item_name"
                                 autocomplete="off" 
+                                value="Isuzu Sportivo"
                                 required />
                         </div>
 
                         <div className="form-group">
                             <p><b>URL/Link: <span className="text-red-700">(*)</span></b></p>
-                            <input 
+                            {/* <input 
                                 type="text" 
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 my-4" 
                                 placeholder="Input URL or link here" 
                                 autocomplete="off" 
-                                required />
+                                required /> */}
+                            <div class="flex shadow-xs rounded-base my-4">
+                                <span class="inline-flex items-center px-3 text-sm text-body bg-neutral-tertiary border rounded-e-0 border-default-medium border-e-0 rounded-s-base">
+                                    <FontAwesomeIcon icon={ faPaperclip }/>
+                                </span>
+                                <input 
+                                    type="text"
+                                    id="website-admin" 
+                                    class="rounded-none rounded-e-base block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand placeholder:text-body" 
+                                    placeholder="Input or paste URL here" 
+                                    name="item_url" 
+                                    value="Sample URL" />
+                            </div>
                         </div>
 
                         <div className="form-group">
@@ -142,14 +102,15 @@ export default function WishList(){
                             <input 
                                 type="number" 
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 my-4" 
-                                placeholder="Input URL or link here" 
-                                autocomplete="off" 
+                                placeholder="Input price here" 
+                                name="item_price" 
+                                value="320000"
                                 required />
                         </div>
 
                         <div className="form-group">
                             <p><b>Images: <span className="text-red-700">(*)</span></b></p>
-                            <DropzoneComponent />
+                            <DropzoneComponent setFiles={setFiles} files={files} />
                         </div>
 
                         <div className="form-group">
@@ -158,9 +119,35 @@ export default function WishList(){
                                 type="number" 
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 my-4" 
                                 placeholder="Input notes here" 
+                                name="item_notes"
                                 rows="7"
-                                autocomplete="off" />
+                                autocomplete="off" 
+                                value="Sample notes" />
                         </div>
+
+                        {/* <div className="form-group">
+                            <div className="flex items-center justify-between">
+                                <p><b>Collection: <span className="text-red-700">(*)</span></b></p>
+                                <ThemeProvider theme={customTheme}>
+                                    <Button 
+                                        type="button" 
+                                        color="light" 
+                                        className="
+                                            font-bold 
+                                            rounded-md
+                                            uppercase">
+                                        <FontAwesomeIcon icon={ faPlus } className="mr-1"/>
+                                        New
+                                    </Button>
+                                </ThemeProvider>
+                            </div>
+                            <select 
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 my-4"
+                                name="" 
+                                id="">
+                                <option value="">Select collection here</option>
+                            </select>
+                        </div> */}
 
                         <ThemeProvider theme={customTheme}>
                             <Button 
