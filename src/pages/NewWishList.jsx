@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from "react" 
 
 // React Router
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 
 // Assets
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -11,7 +11,6 @@ import {
     faClose, 
     faPlus 
 } from '@fortawesome/free-solid-svg-icons'
-import { useDropzone } from 'react-dropzone';
 
 
 // Flowbite
@@ -30,6 +29,8 @@ export default function WishList(){
 
     const [files, setFiles] = useState([]);
 
+    const navigate = useNavigate(); // Initialize the navig
+
     function submitWishlist(e){
 
         e.preventDefault()
@@ -37,9 +38,17 @@ export default function WishList(){
         const formData = new FormData(e.target); // Create a FormData object from the form
         const data = Object.fromEntries(formData.entries()); // Convert FormData to a plain object
 
-        data.item_files = files
-    
-        console.log(data); 
+        if(files != ''){
+
+            data.item_files = files
+
+            navigate("/collections")
+        }
+        else{
+            
+            // Execute alert
+            console.log('Empty')
+        }
     }
 
     return (
