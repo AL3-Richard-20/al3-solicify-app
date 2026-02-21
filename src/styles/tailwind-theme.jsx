@@ -7,6 +7,7 @@ const customTheme = createTheme({
             light: "bg-gray-100 hover:bg-gray-200 text-white",
         },
         size: {
+            sm: "px-3 text-sm",
             lg: "px-6 py-3 text-lg",
         },
     },

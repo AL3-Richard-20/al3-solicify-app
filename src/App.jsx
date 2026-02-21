@@ -10,6 +10,9 @@ import WishList from './pages/WishList.jsx'
 import Granted from './pages/Granted.jsx'
 import Connections from './pages/Connections.jsx'
 import NewWishList from './pages/NewWishList.jsx'
+import Collections from './pages/Collections.jsx'
+import CollectionItems from './pages/CollectionItems.jsx'
+import WishlistItemInfo from './pages/WishlistItemInfo.jsx'
 
 function App() {
   
@@ -33,6 +36,12 @@ function App() {
           <Route path="/connections" element={<Connections />} />
 
           <Route path="/newwishlist" element={<NewWishList />} />
+
+          <Route path="/collections" element={<Collections />} />
+
+          <Route path="/collectionitems" element={<CollectionItems />} />
+
+          <Route path="/iteminfo" element={<WishlistItemInfo />} />
 
           <Route path="*" element={<NotFound />} />
 
