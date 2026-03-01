@@ -43,6 +43,16 @@ export default function Home(){
                     </NavLink>
                 {/* =================== WISHLIST END ============= */}
 
+                {/* =================== TO BUY ================= */}
+                    <NavLink to="/connections" className="flex items-center justify-between m-1 p-4 border border-gray-300">
+                        <div>
+                            <FontAwesomeIcon className="text-3xl mt-4 mb-4 text-yellow-300" icon={faCartShopping} />
+                            <h4 className="font-bold uppercase text-1xl">To Buy</h4>
+                        </div>
+                        <h3 className="text-3xl font-bold">0</h3>
+                    </NavLink>
+                {/* =================== TO BUY END ============= */}
+
                 {/* =================== GRANDTED ================= */}
                     <NavLink to="/granted" className="flex items-center justify-between m-1 p-4 border border-gray-300">
                         <div>

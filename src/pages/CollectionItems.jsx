@@ -41,7 +41,7 @@ export default function CollectionItems(){
 
     return (
         <div>
-             <div>
+            <div>
 
                 {/* =================== TOP NAVIGATION ================= */}
                     <TopNav />
@@ -112,7 +112,6 @@ export default function CollectionItems(){
             {/* =================== MOBILE NAVIGATION END =========== */}
 
             </div>
-
         </div>
     )
 }

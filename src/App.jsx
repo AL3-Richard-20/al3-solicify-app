@@ -1,8 +1,10 @@
-import React from "react";
+import { React, useEffect} from "react";
+
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
 
 // Pages
+import ScrollToTop from "./components/ScrollToTop.jsx"; // Import ScrollToTop component
 import Login from './pages/Login.jsx'
 import Home from './pages/Home.jsx'
 import NotFound from './pages/NotFound.jsx'
@@ -20,6 +22,9 @@ function App() {
     ReactDOM.createRoot(root).render(
 
       <BrowserRouter>
+
+        {/* Add ScrollToTop inside BrowserRouter */}
+        <ScrollToTop />
 
         <Routes>
 
