@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useNavigate } from 'react-router'
 
 // Assets
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEllipsisVertical, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faEllipsisVertical, faArrowLeft, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 // Flowbite
 import { Button, createTheme, ThemeProvider } from 'flowbite-react'
@@ -17,6 +17,7 @@ import MobileNav from '../components/MobileNav.jsx'
 export default function WishlistItemInfo(){
 
     const [activeImage, setActiveImage] = useState(0);
+    const scrollRef = useRef(null);
 
     const images = [
         "https://via.placeholder.com/400x200",
@@ -24,7 +25,37 @@ export default function WishlistItemInfo(){
         "https://via.placeholder.com/400x200/bbbbbb",
         "https://via.placeholder.com/400x200/cccccc",
         "https://via.placeholder.com/400x200/dddddd",
+        "https://via.placeholder.com/400x200",
+        "https://via.placeholder.com/400x200/aaaaaa",
+        "https://via.placeholder.com/400x200/bbbbbb",
+        "https://via.placeholder.com/400x200/cccccc",
+        "https://via.placeholder.com/400x200/dddddd",
     ];
+
+    const scroll = (direction) => {
+        if (scrollRef.current) {
+          const scrollAmount = 120;
+          scrollRef.current.scrollBy({
+            left: direction === "left" ? -scrollAmount : scrollAmount,
+            behavior: "smooth",
+          });
+        }
+    };
+    
+    const handleThumbnailClick = (index) => {
+        setActiveImage(index);
+    
+        const container = scrollRef.current;
+        const thumb = container.children[index];
+    
+        if (thumb) {
+        thumb.scrollIntoView({
+            behavior: "smooth",
+            inline: "center",
+            block: "nearest",
+        });
+        }
+    };
 
     return (
         <div>
@@ -44,7 +75,7 @@ export default function WishlistItemInfo(){
                     </div>
 
                     {/* Main Image */}
-                    <div className="w-full h-40 bg-gray-300 border border-gray-400">
+                    <div className="w-full h-40 overflow-hidden rounded-md border border-gray-300 bg-gray-300">
                         <img
                             key={activeImage}
                             src={images[activeImage]}
@@ -54,25 +85,35 @@ export default function WishlistItemInfo(){
                     </div>
 
                     {/* Thumbnail Row */}
-                    <div className="flex gap-2 mt-3 p-4">
-                        {images.map((img, index) => (
-                            <div
-                                key={index}
-                                onClick={() => setActiveImage(index)}
-                                className={`w-12 h-10 rounded cursor-pointer overflow-hidden border transition-all duration-300 
-                                ${
-                                    activeImage === index
-                                    ? "border-blue-600 scale-105"
-                                    : "border-gray-400 hover:border-blue-500 hover:scale-105"
-                                }`}
+                    <div className="relative mt-3">
+
+                        {/* Scrollable Thumbnails */}
+                        <div
+                            ref={scrollRef}
+                            className="flex gap-2 overflow-x-auto scroll-smooth scrollbar-hide px-6"
                             >
-                                <img
-                                src={img}
-                                alt={`Thumbnail ${index}`}
-                                className="w-full h-full object-cover opacity-80 hover:opacity-100 transition duration-300"
-                                />
-                            </div>
-                        ))}
+
+                            {images.map((img, index) => (
+                                <div
+                                    key={index}
+                                    onClick={() => handleThumbnailClick(index)}
+                                    className={`min-w-[48px] h-10 rounded cursor-pointer overflow-hidden border transition-all duration-300
+                                    ${
+                                        activeImage === index
+                                        ? "border-blue-600 scale-105"
+                                        : "border-gray-400 hover:border-blue-500 hover:scale-105"
+                                    }`}
+                                >
+                                    <img
+                                        src={img}
+                                        alt={`Thumbnail ${index}`}
+                                        className="w-full h-full object-cover opacity-80 hover:opacity-100 transition duration-300"
+                                    />
+                                </div>
+                            ))}
+
+                        </div>
+
                     </div>
 
                     {/* Product Info */}
