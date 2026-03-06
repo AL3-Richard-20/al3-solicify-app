@@ -1,5 +1,7 @@
 import { useState } from "react" 
 
+import { useNavigate } from "react-router-dom"
+
 // Assets
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsisV, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -18,9 +20,14 @@ import { NavLink } from "react-router"
 
 export default function WishList(){
 
+    const navigate = useNavigate()
+
     // ========== Tailwind Classes ============
+        const body_class = 'min-h-[700px]'
         const flex_class = "flex items-center justify-between mb-1 pl-2 pt-2 pb-4 fixed left-[270px] bottom-[55px] w-[100%] bg-transparent"
     // ========== Tailwind Classes END ========
+
+    const anim_css_slideInLeft = 'animate__animated animate__slideInLeft animate__bounce animate__faster'
 
     const [bannertype, setBannerType] = useState("Wishlist")
 
@@ -52,6 +59,13 @@ export default function WishList(){
         },
     ]
 
+    const collectionInfo = (event, collection_name) => {
+
+        event.preventDefault()
+
+        navigate('/collectionitems', { state: { coltnname:collection_name }} )
+    }
+
     return (
         <div>
 
@@ -60,7 +74,7 @@ export default function WishList(){
             {/* =================== TOP NAVIGATION END ============= */}
 
             {/* =================== CONTENT ================ */}
-            <div className="min-h-[700px]" id="my_wishlist_div">
+            <div className={ `${body_class} ${anim_css_slideInLeft}` } id="my_wishlist_div">
 
                 <div className="m-4 mt-10">
                     <h4 className="font-bold">My Wishlist</h4>
@@ -99,7 +113,13 @@ export default function WishList(){
                     { 
                         wishlists_arr.map((wishlist, index) => (
 
-                            <div className="m-2 p-2 border border-gray-300 w-[170px] rounded" key={index}>
+                            <div 
+                                className="m-2 p-2 border border-gray-300 w-[170px] rounded" 
+                                key={index} 
+                                onClick={(e) => collectionInfo(
+                                    e, 
+                                    wishlist.CollectionName
+                                )}>
 
                                 <div className="text-right">
                                     <FontAwesomeIcon className="mr-2 ml-2" icon={faEllipsisV} />

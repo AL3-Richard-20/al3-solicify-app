@@ -15,6 +15,9 @@ import MobileNav from '../components/MobileNav.jsx'
 
 export default function CollectionItems(){
 
+    const body_class = 'min-h-[700px]'
+    const anim_css_slideInLeft = 'animate__animated animate__slideInLeft animate__bounce animate__faster'
+
     const collection_items = [
         {
             "collItemId":1,
@@ -48,7 +51,7 @@ export default function CollectionItems(){
                 {/* =================== TOP NAVIGATION END ============= */}
 
                 {/* Modal */}
-                <div className="min-h-[700px] bg-white overflow-hidden">
+                <div className={`${body_class} ${anim_css_slideInLeft}`}>
 
                     {/* Header */}
                     <div className="flex justify-center py-4 text-center font-semibold text-lg border-b">

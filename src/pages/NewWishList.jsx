@@ -27,6 +27,9 @@ import { DropzoneComponent } from "../components/Dropzone.jsx";
 
 export default function WishList(){
 
+    const body_class = 'min-h-[700px]'
+    const anim_css_slideInLeft = 'animate__animated animate__slideInLeft animate__bounce animate__faster'
+
     const [files, setFiles] = useState([]);
 
     const navigate = useNavigate(); // Initialize the navig
@@ -59,7 +62,7 @@ export default function WishList(){
             {/* =================== TOP NAVIGATION END ============= */}
 
             {/* =================== CONTENT ==================== */}
-                <div className="min-h-[700px]" id="new_wishlist_div">
+                <div className={ `${ body_class } ${anim_css_slideInLeft}` } id="new_wishlist_div">
 
                     <div className="m-4 mt-10">
                         <h4 className="font-bold">

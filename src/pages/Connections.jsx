@@ -1,5 +1,8 @@
 import { useState } from "react" 
 
+// React Router
+import { useNavigate } from "react-router-dom";
+
 // Assets
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsisV, faSearch } from '@fortawesome/free-solid-svg-icons'
@@ -17,9 +20,14 @@ import MobileNav from '../components/MobileNav.jsx'
 
 export default function Connections(){
 
+    const body_class = 'min-h-[700px]'
+    const anim_css_slideInLeft = 'animate__animated animate__slideInLeft animate__bounce animate__faster'
+
     // =========== States =============
         const [bannertype, setBannerType] = useState("Connections")
     // =========== States END =========
+
+    const navigate = useNavigate();
 
     // =========== Tailwind Classes ==============
 
@@ -53,6 +61,16 @@ export default function Connections(){
     // =========== Data Source END =========
 
 
+    // =========== Functions ===============
+        const viewUserProfile = (event, userid) => {
+
+            event.preventDefault()
+
+            navigate('/userprofile', { state:{ user_id:userid } })
+        }
+    // =========== Functions END ===========
+
+
     return (
         <div>
 
@@ -64,7 +82,7 @@ export default function Connections(){
                 {/* <Banner bannertype={bannertype} /> */}
             {/* =================== BANNER END =============== */}
 
-            <div className="min-h-[700px]">
+            <div className={`${body_class} ${anim_css_slideInLeft}`}>
 
 
                 {/* ============== SEARCH BAR =============== */}
@@ -89,9 +107,11 @@ export default function Connections(){
 
                 {/* =============== MY CONNECTIONS ==================== */}
                     <div id="my_connections_div">
+
                         <div className="m-4 mt-10">
                             <h4 className="font-bold">My Connections</h4>
                         </div>
+
                         <div className="flow-root m-4 p-2">
 
                             <ul role="list" className="divide-y divide-gray-200">
@@ -119,7 +139,11 @@ export default function Connections(){
                                                             Wish Granted: { conn_items.TotalGranted }
                                                         </p>
                                                         <ThemeProvider theme={ customTheme }>
-                                                            <Button type="button" color="primary" className="mt-3 text-white uppercase font-medium rounded-lg text-sm px-3 py-2 me-2 mb-2">
+                                                            <Button 
+                                                                type="button" 
+                                                                color="primary" 
+                                                                className="mt-3 text-white uppercase font-medium rounded-lg text-sm px-3 py-2 me-2 mb-2" 
+                                                                onClick={ (e) => viewUserProfile(e, index) }>
                                                                 View Profile
                                                             </Button>
                                                         </ThemeProvider>
