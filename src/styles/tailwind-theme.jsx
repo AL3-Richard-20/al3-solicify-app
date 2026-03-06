@@ -1,4 +1,5 @@
 import {  createTheme } from 'flowbite-react'
+import 'animate.css';
 
 const customTheme = createTheme({
     button: {

@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router'
+import { useNavigate, useLocation } from 'react-router'
 
 // Assets
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -12,8 +12,17 @@ import customTheme from '../styles/tailwind-theme.jsx'
 // import Banner from '../components/Banner.jsx'
 import TopNav from '../components/TopNav.jsx'
 import MobileNav from '../components/MobileNav.jsx'
+import ItemCard from '../components/Item/ItemCard.jsx'
 
 export default function CollectionItems(){
+
+    const body_class = 'min-h-[700px]'
+    const anim_css_slideInLeft = 'animate__animated animate__slideInLeft animate__bounce animate__faster'
+
+    const navigate = useNavigate()
+    const location = useLocation()
+
+    const collection_name = location.state?.coltnname
 
     const collection_items = [
         {
@@ -36,6 +45,13 @@ export default function CollectionItems(){
             "itemImage":"Sample.png",
             "itemPrice":"1,750.00",
             "DateAdded":"Aug 03, 2026"
+        },
+        {
+            "collItemId":4,
+            "itemName":"Item Number 4",
+            "itemImage":"Sample.png",
+            "itemPrice":"5,200.00",
+            "DateAdded":"Aug 31, 2026"
         }
     ]
 
@@ -48,57 +64,24 @@ export default function CollectionItems(){
                 {/* =================== TOP NAVIGATION END ============= */}
 
                 {/* Modal */}
-                <div className="min-h-[700px] bg-white overflow-hidden">
+                <div className={ `${ body_class } ${ anim_css_slideInLeft }` }>
 
                     {/* Header */}
                     <div className="flex justify-between py-4 text-center font-semibold text-lg border-b">
-                        <FontAwesomeIcon className="ml-4" icon={ faArrowLeft } />
-                        <p>Collection Name</p> 
+                        <FontAwesomeIcon className="ml-4" icon={ faArrowLeft } onClick={ (e) => navigate(-1) } />
+                        <p>{ collection_name }</p> 
                         <FontAwesomeIcon className="mr-4" icon={ faEllipsisVertical } />
                     </div>
 
                     {
                         collection_items.map((item) => (
 
-                            <div className="m-4 p-4 rounded-sm border">
-
-                                <div className="flex justify-between items-start" key={ item.collItemId }>
-
-                                    {/* Left Section */}
-                                    <div className="flex gap-4">
-
-                                        {/* Image Placeholder */}
-                                        <div className="w-20 h-16 bg-gray-400 border border-gray-500"></div>
-
-                                        {/* Text Content */}
-                                        <div>
-                                            <h2 className="font-semibold text-gray-800 text-sm">
-                                                { item.itemName }
-                                            </h2>
-                                            <p className="text-xs text-gray-600 mt-1">Price: { item.itemPrice }</p>
-                                            <p className="text-xs text-gray-600">
-                                            Date Added: { item.DateAdded }
-                                            </p>
-
-                                            {/* Button */}
-                                            <ThemeProvider theme={ customTheme }>
-                                                <Button 
-                                                    color="primary" 
-                                                    size="sm" 
-                                                    className="font-bold my-3">
-                                                    Mark as Granted
-                                                </Button>
-                                            </ThemeProvider>
-
-                                        </div>
-                                    </div>
-
-                                    {/* 3-dot Menu */}
-                                    <FontAwesomeIcon className="text-gray-600 hover:text-gray-800" icon={ faEllipsisVertical } />
-                                    
-                                </div>
-
-                            </div>          
+                            <ItemCard 
+                                key = { item.collItemId } 
+                                item_Id = { item.collItemId }
+                                item_name = { item.itemName } 
+                                item_price = { item.itemPrice } 
+                                date_added = { item.DateAdded } />
                         ))
                     }
                     <div>

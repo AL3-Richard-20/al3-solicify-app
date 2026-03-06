@@ -15,6 +15,7 @@ import NewWishList from './pages/NewWishList.jsx'
 import Collections from './pages/Collections.jsx'
 import CollectionItems from './pages/CollectionItems.jsx'
 import WishlistItemInfo from './pages/WishlistItemInfo.jsx'
+import UserProfile from './pages/UserProfile.jsx'
 
 function App() {
   
@@ -47,6 +48,8 @@ function App() {
           <Route path="/collectionitems" element={<CollectionItems />} />
 
           <Route path="/iteminfo" element={<WishlistItemInfo />} />
+
+          <Route path="/userprofile" element={<UserProfile />} />
 
           <Route path="*" element={<NotFound />} />
 
