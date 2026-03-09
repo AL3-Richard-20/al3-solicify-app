@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 // Assets
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -14,6 +14,9 @@ import TopNav from '../components/TopNav.jsx'
 import MobileNav from '../components/MobileNav.jsx'
 
 export default function CollectionItems(){
+
+    const location = useLocation()
+    const navigate = useNavigate()
 
     const body_class = 'min-h-[700px]'
     const anim_css_slideInLeft = 'animate__animated animate__slideInLeft animate__bounce animate__faster'
@@ -42,6 +45,13 @@ export default function CollectionItems(){
         }
     ]
 
+    const viewItemInfo = (event, Item_Id) => {
+
+        event.preventDefault()
+
+        navigate('/iteminfo', { state:{ itemid:Item_Id } })
+    }
+
     return (
         <div>
             <div>
@@ -63,7 +73,7 @@ export default function CollectionItems(){
                     {
                         collection_items.map((item) => (
 
-                            <div className="m-4 p-4 rounded-sm border">
+                            <div className="m-4 p-4 rounded-sm border" onClick={ (e) => { viewItemInfo(e, item.collItemId)  }}>
 
                                 <div className="flex justify-between items-start" key={ item.collItemId }>
 

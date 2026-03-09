@@ -1,7 +1,7 @@
 import { useState } from "react" 
 
 // React Router
-import { NavLink, useLocation } from "react-router";
+import { NavLink, useLocation, useNavigate } from "react-router";
 
 // Assets
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -17,15 +17,54 @@ import customTheme from '../styles/tailwind-theme.jsx'
 import Banner from '../components/Banner.jsx'
 import TopNav from '../components/TopNav.jsx'
 import MobileNav from '../components/MobileNav.jsx'
+import CollectionItem from "../components/Collection/CollectionItem.jsx";
 
 export default function UserProfile(){
 
     const body_class = 'min-h-[700px]'
     const anim_css_slideInLeft = 'animate__animated animate__slideInLeft animate__bounce animate__faster'
 
+    const navigate = useNavigate()
     const location = useLocation()
 
     const user_Id = location.state?.user_id
+
+    // ================ Wishlist Area ==================
+        const wishlists_arr = [ 
+            {
+                "CollectionName":"2025 Birthday",
+                "TotalItems":3,
+                "DateAdded":"Nov 15, 2025"
+            },
+            {
+                "CollectionName":"Christmas Party",
+                "TotalItems":7,
+                "DateAdded":"Oct 11, 2025"
+            },
+            {
+                "CollectionName":"Company Party",
+                "TotalItems":2,
+                "DateAdded":"July 10, 2025"
+            },
+            {
+                "CollectionName":"2024 Birthday",
+                "TotalItems":3,
+                "DateAdded":"Dec 11, 2024"
+            },
+            {
+                "CollectionName":"Year Ender Party",
+                "TotalItems":7,
+                "DateAdded":"Dec 9, 2024"
+            },
+        ]
+    // ================ Wishlist Area END ==============
+
+    const collectionInfo = (event, collection_name) => {
+
+        event.preventDefault()
+
+        navigate('/collectionitems', { state: { coltnname:collection_name }} )
+    }
 
     return (
         <div>
@@ -113,6 +152,22 @@ export default function UserProfile(){
                         </ul>
                     </div>
                 {/* ============== FILTER TAB END ========= */}
+
+                {/* ================ Wishlist ================ */}
+                    <div id="wishlist_items" className="flex items-center flex-wrap justify-between">
+                        { 
+                            wishlists_arr.map((wishlist, index) => (
+                                
+                                <CollectionItem 
+                                    key={index} 
+                                    collctn_name={ wishlist.CollectionName } 
+                                    total_items={ wishlist.TotalItems } 
+                                    date_added={ wishlist.DateAdded } 
+                                    collectionInfo={ collectionInfo } />
+                            ))
+                        }
+                    </div>
+                {/* ================ Wishlist END ============ */}
 
             </div>
 

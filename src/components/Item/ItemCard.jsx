@@ -1,3 +1,5 @@
+import { useNavigate, useLocation } from 'react-router-dom'
+
 // Assets
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsisVertical, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
@@ -8,8 +10,18 @@ import customTheme from '../../styles/tailwind-theme.jsx'
 
 export default function ItemCard({item_Id, item_name, item_price, date_added}){
 
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    const viewItemInfo = (event, Item_Id) => {
+
+        event.preventDefault()
+
+        navigate('/iteminfo', { state:{ itemid:Item_Id } })
+    }
+
     return (
-        <div className="m-4 p-4 rounded-sm border">
+        <div className="m-4 p-4 rounded-sm border" onClick={ (e) => { viewItemInfo(e, item_Id) }}>
 
             <div className="flex justify-between items-start" key={ item_Id }>
 

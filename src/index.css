@@ -37,3 +37,8 @@ html{
 .scrollbar-hide::-webkit-scrollbar {
     display: none; /* Chrome, Safari, and Opera */
 }
+
+/* ion-icon {
+    font-size: 1.5em;
+    vertical-align: middle;
+} */
