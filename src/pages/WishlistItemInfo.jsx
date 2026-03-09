@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-import { useNavigate } from 'react-router'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 // Assets
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -15,6 +15,14 @@ import TopNav from '../components/TopNav.jsx'
 import MobileNav from '../components/MobileNav.jsx'
 
 export default function WishlistItemInfo(){
+
+    const body_class = 'min-h-[700px]'
+    const anim_css_slideInLeft = 'animate__animated animate__slideInLeft animate__bounce animate__faster'
+
+    const navigate = useNavigate()
+    const location = useLocation()
+
+    const item_Id = location.state.itemid
 
     const [activeImage, setActiveImage] = useState(0);
     const scrollRef = useRef(null);
@@ -65,12 +73,12 @@ export default function WishlistItemInfo(){
                     <TopNav />
                 {/* =================== TOP NAVIGATION END ============= */}
 
-                <div className="min-h-[700px] bg-white overflow-hidden">
+                <div className={ `${ body_class } ${ anim_css_slideInLeft }` }>
 
                     {/* Header */}
                     <div className="flex justify-between py-4 text-center font-semibold text-lg border-b">
-                        <FontAwesomeIcon className="ml-4" icon={ faArrowLeft } />
-                        <p>Item Information</p> 
+                        <FontAwesomeIcon className="ml-4" icon={ faArrowLeft } onClick={ (e) => { navigate(-1) } } />
+                        <p>Item Information { item_Id }</p> 
                         <FontAwesomeIcon className="mr-4" icon={ faEllipsisVertical } />
                     </div>
 

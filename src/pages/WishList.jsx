@@ -1,5 +1,6 @@
 import { useState } from "react" 
 
+import { NavLink } from "react-router"
 import { useNavigate } from "react-router-dom"
 
 // Assets
@@ -16,7 +17,7 @@ import customTheme from '../styles/tailwind-theme.jsx'
 import Banner from '../components/Banner.jsx'
 import TopNav from '../components/TopNav.jsx'
 import MobileNav from '../components/MobileNav.jsx'
-import { NavLink } from "react-router"
+import CollectionItem from "../components/Collection/CollectionItem.jsx"
 
 export default function WishList(){
 
@@ -24,7 +25,7 @@ export default function WishList(){
 
     // ========== Tailwind Classes ============
         const body_class = 'min-h-[700px]'
-        const flex_class = "flex items-center justify-between mb-1 pl-2 pt-2 pb-4 fixed left-[270px] bottom-[55px] w-[100%] bg-transparent"
+        const flex_class = "flex items-center justify-between mb-1 pl-2 pt-2 pb-8 fixed left-[270px] bottom-[55px] w-[100%] bg-transparent"
     // ========== Tailwind Classes END ========
 
     const anim_css_slideInLeft = 'animate__animated animate__slideInLeft animate__bounce animate__faster'
@@ -113,32 +114,12 @@ export default function WishList(){
                     { 
                         wishlists_arr.map((wishlist, index) => (
 
-                            <div 
-                                className="m-2 p-2 border border-gray-300 w-[170px] rounded" 
+                            <CollectionItem 
                                 key={index} 
-                                onClick={(e) => collectionInfo(
-                                    e, 
-                                    wishlist.CollectionName
-                                )}>
-
-                                <div className="text-right">
-                                    <FontAwesomeIcon className="mr-2 ml-2" icon={faEllipsisV} />
-                                </div>
-
-                                <div className="mb-3 flex items-center justify-center flex-wrap">
-                                    <div className="h-[50px] w-[50px] bg-slate-300 m-1"></div>
-                                    <div className="h-[50px] w-[50px] bg-slate-300 m-1"></div>
-                                    <div className="h-[50px] w-[50px] bg-slate-300 m-1"></div>
-                                    <div className="h-[50px] w-[50px] bg-slate-300 m-1"></div>
-                                </div>
-
-                                <div className="text-center">
-                                    <h4 className="font-bold">{ wishlist.CollectionName }</h4>
-                                    <p className="text-gray-500">Total items: <span>{ wishlist.TotalItems }</span></p>
-                                    <p>{ wishlist.DateAdded }</p>
-                                </div>
-
-                            </div>
+                                collctn_name={ wishlist.CollectionName } 
+                                total_items={ wishlist.TotalItems } 
+                                date_added={ wishlist.DateAdded } 
+                                collectionInfo={ collectionInfo } />
                         ))
                     }
                 </div>
