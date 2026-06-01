@@ -1,0 +1,29 @@
+Recommended Order (Memorize This)
+
+Inside a component, follow this exact sequence:
+
+1. Props destructuring
+function Component({ id, name }) {}
+
+2. State hooks
+const [data, setData] = useState(null);
+
+3. Refs
+const ref = useRef();
+
+4. Derived values (useMemo)
+const computed = useMemo(() => ..., []);
+
+5. Callbacks (useCallback)
+const handleClick = useCallback(() => {}, []);
+
+6. Effects (useEffect) → LAST among hooks
+useEffect(() => {}, []);
+
+7. Event handlers / helpers
+function handleSubmit() {}
+
+8. Conditional returns
+if (!data) return null;
+
+9. JSX return

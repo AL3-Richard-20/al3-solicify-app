@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 
-export default function Form({ onFormSubmit }){
+export default function SignUp({ onFormSubmit }){
 
     const anim_css_slideInLeft = 'animate__animated animate__slideInLeft animate__bounce animate__faster'
 
@@ -23,6 +23,23 @@ export default function Form({ onFormSubmit }){
             <form onSubmit={ localSubmit }>
 
                 <div className="mt-2 mb-4">
+                    <label htmlFor="email-address-icon" className="block mb-2 text-sm font-medium text-gray-500 dark:text-white">Full Name</label>
+                    <div className="relative">
+                        <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                            <FontAwesomeIcon icon={faUser} />
+                        </div>
+                        <input 
+                            type="text" 
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" 
+                            id="wl_fullname" 
+                            name="wl_fullname" 
+                            placeholder="Input full name here"
+                            defaultValue="Richard Altre" 
+                            autoComplete="off" />
+                    </div>
+                </div>
+
+                <div className="mt-2 mb-4">
                     <label htmlFor="email-address-icon" className="block mb-2 text-sm font-medium text-gray-500 dark:text-white">Email</label>
                     <div className="relative">
                         <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
@@ -34,6 +51,7 @@ export default function Form({ onFormSubmit }){
                             id="wl_username" 
                             name="wl_username" 
                             placeholder="Input email or username here" 
+                            defaultValue="richarddel.altre@uratex.com.ph"
                             autoComplete="off" />
                     </div>
                 </div>
@@ -49,18 +67,10 @@ export default function Form({ onFormSubmit }){
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" 
                             id="wl_password" 
                             name="wl_password" 
+                            defaultValue="admin123 "
                             placeholder="Input password here" />
                     </div>
                 </div>
-
-                <div className="flex items-center justify-between my-[20px]">
-                    <div>
-                        <input type="checkbox" className="mr-2" />
-                        <span className="text-gray-500">Remember me</span>
-                    </div>
-                    <a href="" className="text-blue-600 font-bold">Forgot Password?</a>
-                </div>
-
 
                 <button 
                     type="submit" 
@@ -77,7 +87,7 @@ export default function Form({ onFormSubmit }){
                         w-full
                         uppercase 
                         font-bold">
-                    Sign In
+                    Sign Up
                 </button>
 
             </form>

@@ -18,7 +18,9 @@ export default function CollectionItems(){
     const location = useLocation()
     const navigate = useNavigate()
 
-    const body_class = 'min-h-[700px]'
+    const body_class    = 'min-h-[100vh]'
+    const content_class = 'mb-[150px]'
+
     const anim_css_slideInLeft = 'animate__animated animate__slideInLeft animate__bounce animate__faster'
 
     const collection_items = [
@@ -53,78 +55,76 @@ export default function CollectionItems(){
     }
 
     return (
-        <div>
-            <div>
+        <div className={ body_class }>
 
-                {/* =================== TOP NAVIGATION ================= */}
-                    <TopNav />
-                {/* =================== TOP NAVIGATION END ============= */}
+            {/* =================== TOP NAVIGATION ================= */}
+                <TopNav />
+            {/* =================== TOP NAVIGATION END ============= */}
 
-                {/* Modal */}
-                <div className={`${body_class} ${anim_css_slideInLeft}`}>
+            {/* Modal */}
+            <div className={`${anim_css_slideInLeft} ${ content_class }`}>
 
-                    {/* Header */}
-                    <div className="flex justify-center py-4 text-center font-semibold text-lg border-b">
-                        {/* <FontAwesomeIcon className="ml-4" icon={ faArrowLeft } /> */}
-                        <p>Granted</p> 
-                        {/* <FontAwesomeIcon className="mr-4" icon={ faEllipsisVertical } /> */}
-                    </div>
-
-                    {
-                        collection_items.map((item) => (
-
-                            <div className="m-4 p-4 rounded-sm border" onClick={ (e) => { viewItemInfo(e, item.collItemId)  }}>
-
-                                <div className="flex justify-between items-start" key={ item.collItemId }>
-
-                                    {/* Left Section */}
-                                    <div className="flex gap-4">
-
-                                        {/* Image Placeholder */}
-                                        <div className="w-20 h-16 bg-gray-400 border border-gray-500"></div>
-
-                                        {/* Text Content */}
-                                        <div>
-                                            <h2 className="font-semibold text-gray-800 text-sm">
-                                                { item.itemName }
-                                            </h2>
-                                            <p className="text-xs text-gray-600 mt-1">Price: { item.itemPrice }</p>
-                                            <p className="text-xs text-gray-600">
-                                            Date Added: { item.DateAdded }
-                                            </p>
-
-                                            {/* Button */}
-                                                {/* <ThemeProvider theme={ customTheme }>
-                                                    <Button 
-                                                        color="primary" 
-                                                        size="sm" 
-                                                        className="font-bold my-3">
-                                                        Mark as Granted
-                                                    </Button>
-                                                </ThemeProvider> */}
-
-                                        </div>
-                                    </div>
-
-                                    {/* 3-dot Menu */}
-                                    <FontAwesomeIcon className="text-gray-600 hover:text-gray-800" icon={ faEllipsisVertical } />
-                                    
-                                </div>
-
-                            </div>          
-                        ))
-                    }
-                    <div>
-
+                {/* Header */}
+                <div className="flex justify-center py-4 text-center font-semibold text-lg border-b">
+                    {/* <FontAwesomeIcon className="ml-4" icon={ faArrowLeft } /> */}
+                    <p>Granted</p> 
+                    {/* <FontAwesomeIcon className="mr-4" icon={ faEllipsisVertical } /> */}
                 </div>
 
+                {
+                    collection_items.map((item) => (
+
+                        <div className="m-4 p-4 rounded-sm border" onClick={ (e) => { viewItemInfo(e, item.collItemId)  }}>
+
+                            <div className="flex justify-between items-start" key={ item.collItemId }>
+
+                                {/* Left Section */}
+                                <div className="flex gap-4">
+
+                                    {/* Image Placeholder */}
+                                    <div className="w-20 h-16 bg-gray-400 border border-gray-500"></div>
+
+                                    {/* Text Content */}
+                                    <div>
+                                        <h2 className="font-semibold text-gray-800 text-sm">
+                                            { item.itemName }
+                                        </h2>
+                                        <p className="text-xs text-gray-600 mt-1">Price: { item.itemPrice }</p>
+                                        <p className="text-xs text-gray-600">
+                                        Date Added: { item.DateAdded }
+                                        </p>
+
+                                        {/* Button */}
+                                            {/* <ThemeProvider theme={ customTheme }>
+                                                <Button 
+                                                    color="primary" 
+                                                    size="sm" 
+                                                    className="font-bold my-3">
+                                                    Mark as Granted
+                                                </Button>
+                                            </ThemeProvider> */}
+
+                                    </div>
+                                </div>
+
+                                {/* 3-dot Menu */}
+                                {/* <ion-icon class="text-gray-600 hover:text-gray-800" name="ellipsis-vertical-outline"></ion-icon> */}
+                                
+                            </div>
+
+                        </div>          
+                    ))
+                }
+                <div>
+
             </div>
 
-            {/* =================== MOBILE NAVIGATION =============== */}
-                <MobileNav />
-            {/* =================== MOBILE NAVIGATION END =========== */}
+        </div>
 
-            </div>
+        {/* =================== MOBILE NAVIGATION =============== */}
+            <MobileNav />
+        {/* =================== MOBILE NAVIGATION END =========== */}
+
         </div>
     )
 }

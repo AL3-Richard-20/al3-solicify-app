@@ -27,7 +27,9 @@ import { DropzoneComponent } from "../components/Dropzone.jsx";
 
 export default function WishList(){
 
-    const body_class = 'min-h-[700px]'
+    const body_class    = 'min-h-[100vh]'
+    const content_class = 'mb-[150px]'
+
     const anim_css_slideInLeft = 'animate__animated animate__slideInLeft animate__bounce animate__faster'
 
     const [files, setFiles] = useState([]);
@@ -55,19 +57,20 @@ export default function WishList(){
     }
 
     return (
-        <div>
+        <div className={ body_class }>
 
             {/* =================== TOP NAVIGATION ================= */}
                 <TopNav />
             {/* =================== TOP NAVIGATION END ============= */}
 
             {/* =================== CONTENT ==================== */}
-                <div className={ `${ body_class } ${anim_css_slideInLeft}` } id="new_wishlist_div">
+                <div className={ `${anim_css_slideInLeft} ${ content_class }` } id="new_wishlist_div">
 
                     <div className="m-4 mt-10">
                         <h4 className="font-bold">
                             <NavLink to="/wishlist">
-                                <FontAwesomeIcon className="mr-4" icon={faArrowLeft} />
+                                {/* <FontAwesomeIcon className="mr-4" icon={faArrowLeft} /> */}
+                                <ion-icon class="mr-4 text-2xl" name="arrow-back-outline"></ion-icon>
                             </NavLink>
                             Create New Wishlist
                         </h4>
@@ -97,7 +100,8 @@ export default function WishList(){
                                 required /> */}
                             <div class="flex shadow-xs rounded-base my-4">
                                 <span class="inline-flex items-center px-3 text-sm text-body bg-neutral-tertiary border rounded-e-0 border-default-medium border-e-0 rounded-s-base">
-                                    <FontAwesomeIcon icon={ faPaperclip }/>
+                                    {/* <FontAwesomeIcon icon={ faPaperclip }/> */}
+                                    <ion-icon class="text-2xl" name="attach-outline"></ion-icon>
                                 </span>
                                 <input 
                                     type="text"

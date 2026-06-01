@@ -21,7 +21,9 @@ import CollectionItem from "../components/Collection/CollectionItem.jsx";
 
 export default function UserProfile(){
 
-    const body_class = 'min-h-[700px]'
+    const body_class    = 'min-h-[100vh]'
+    const content_class = 'mb-[150px]'
+
     const anim_css_slideInLeft = 'animate__animated animate__slideInLeft animate__bounce animate__faster'
 
     const navigate = useNavigate()
@@ -67,7 +69,7 @@ export default function UserProfile(){
     }
 
     return (
-        <div>
+        <div className={ body_class }>
 
             {/* =================== TOP NAVIGATION ================= */}
                 <TopNav />
@@ -77,12 +79,13 @@ export default function UserProfile(){
                 {/* <Banner bannertype={bannertype} /> */}
             {/* =================== BANNER END =============== */}
 
-            <div className={`${body_class} ${anim_css_slideInLeft}`}>
+            <div className={`${anim_css_slideInLeft} ${ content_class }`}>
 
                 <div className="m-4 mt-10">
                     <h4 className="font-bold">
-                        <NavLink to="/connections">
-                            <FontAwesomeIcon className="mr-4" icon={faArrowLeft} />
+                        <NavLink to="/connections"> 
+                            {/* <FontAwesomeIcon className="mr-4" icon={faArrowLeft} /> */}
+                            <ion-icon class="text-2xl" name="arrow-back-outline"></ion-icon>
                         </NavLink>
                     </h4>
                 </div>
