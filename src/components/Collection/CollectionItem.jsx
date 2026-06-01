@@ -6,14 +6,15 @@ export default function CollectionItem({ collctn_name, total_items, date_added, 
 
     return (
         <div 
-            className="m-2 p-2 border border-gray-300 w-[170px] rounded" 
+            className="p-2 border border-gray-300 rounded w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]" 
             onClick={(e) => collectionInfo(
                 e, 
                 collctn_name
             )}>
 
             <div className="text-right">
-                <FontAwesomeIcon className="mr-2 ml-2" icon={faEllipsisV} />
+                {/* <FontAwesomeIcon className="mr-2 ml-2" icon={faEllipsisV} /> */}
+                <ion-icon class="mr-2 ml-2" name="ellipsis-vertical-outline"></ion-icon>
             </div>
 
             <div className="mb-3 flex items-center justify-center flex-wrap">

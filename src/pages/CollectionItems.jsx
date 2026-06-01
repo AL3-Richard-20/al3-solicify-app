@@ -16,7 +16,9 @@ import ItemCard from '../components/Item/ItemCard.jsx'
 
 export default function CollectionItems(){
 
-    const body_class = 'min-h-[700px]'
+    const body_class    = 'min-h-[100vh]'
+    const content_class = 'mb-[150px]'
+
     const anim_css_slideInLeft = 'animate__animated animate__slideInLeft animate__bounce animate__faster'
 
     const navigate = useNavigate()
@@ -56,45 +58,45 @@ export default function CollectionItems(){
     ]
 
     return (
-        <div>
-            <div>
+        <div className={ body_class }>
 
-                {/* =================== TOP NAVIGATION ================= */}
-                    <TopNav />
-                {/* =================== TOP NAVIGATION END ============= */}
+            {/* =================== TOP NAVIGATION ================= */}
+                <TopNav />
+            {/* =================== TOP NAVIGATION END ============= */}
 
-                {/* Modal */}
-                <div className={ `${ body_class } ${ anim_css_slideInLeft }` }>
+            {/* Modal */}
+            <div className={ `${ anim_css_slideInLeft } ${ content_class }` }>
 
-                    {/* Header */}
-                    <div className="flex justify-between py-4 text-center font-semibold text-lg border-b">
-                        <FontAwesomeIcon className="ml-4" icon={ faArrowLeft } onClick={ (e) => navigate(-1) } />
-                        <p>{ collection_name }</p> 
-                        <FontAwesomeIcon className="mr-4" icon={ faEllipsisVertical } />
-                    </div>
-
-                    {
-                        collection_items.map((item) => (
-
-                            <ItemCard 
-                                key = { item.collItemId } 
-                                item_Id = { item.collItemId }
-                                item_name = { item.itemName } 
-                                item_price = { item.itemPrice } 
-                                date_added = { item.DateAdded } />
-                        ))
-                    }
-                    <div>
-
+                {/* Header */}
+                <div className="flex justify-between py-4 text-center font-semibold text-lg border-b">
+                    {/* <FontAwesomeIcon className="ml-4" icon={ faArrowLeft } onClick={ (e) => navigate(-1) } /> */}
+                    <ion-icon class="ml-4 text-2xl" name="arrow-back-outline" onClick={ (e) => navigate(-1) }></ion-icon>
+                    <p>{ collection_name }</p> 
+                    {/* <FontAwesomeIcon className="mr-4" icon={ faEllipsisVertical } /> */}
+                    <ion-icon class="mr-4" name="ellipsis-vertical-outline"></ion-icon>
                 </div>
 
+                {
+                    collection_items.map((item) => (
+
+                        <ItemCard 
+                            key = { item.collItemId } 
+                            item_Id = { item.collItemId }
+                            item_name = { item.itemName } 
+                            item_price = { item.itemPrice } 
+                            date_added = { item.DateAdded } />
+                    ))
+                }
+                <div>
+
             </div>
 
-            {/* =================== MOBILE NAVIGATION =============== */}
-                <MobileNav />
-            {/* =================== MOBILE NAVIGATION END =========== */}
+        </div>
 
-            </div>
+        {/* =================== MOBILE NAVIGATION =============== */}
+            <MobileNav />
+        {/* =================== MOBILE NAVIGATION END =========== */}
+
         </div>
     )
 }

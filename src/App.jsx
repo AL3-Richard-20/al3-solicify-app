@@ -3,6 +3,8 @@ import { React, useEffect} from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
 
+// import { AuthContextProvider } from "./context/auth.jsx";
+
 // Pages
 import ScrollToTop from "./components/ScrollToTop.jsx"; // Import ScrollToTop component
 import Login from './pages/Login.jsx'
@@ -18,45 +20,50 @@ import WishlistItemInfo from './pages/WishlistItemInfo.jsx'
 import UserProfile from './pages/UserProfile.jsx'
 
 function App() {
+
+  // const app_title = import.meta.env.VITE_APP_TITLE
+
+  // useEffect(() => {
+  //   document.title =  app_title || "My Wishlist";
+  // }, []);
   
   return (
     ReactDOM.createRoot(root).render(
 
-      <BrowserRouter>
+        <BrowserRouter>
 
-        {/* Add ScrollToTop inside BrowserRouter */}
-        <ScrollToTop />
+          {/* Add ScrollToTop inside BrowserRouter */}
+          <ScrollToTop />
 
-        <Routes>
+          <Routes>
 
-          <Route path="/" element={<Login />} />
+            <Route path="/" element={<Login />} />
 
-          <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login />} />
 
-          <Route path="/home" element={<Home />} />
+            <Route path="/home" element={<Home />} />
 
-          <Route path="/wishlist" element={<WishList />} />
+            <Route path="/wishlist" element={<WishList />} />
 
-          <Route path="/granted" element={<Granted />} />
+            <Route path="/granted" element={<Granted />} />
 
-          <Route path="/connections" element={<Connections />} />
+            <Route path="/connections" element={<Connections />} />
 
-          <Route path="/newwishlist" element={<NewWishList />} />
+            <Route path="/newwishlist" element={<NewWishList />} />
 
-          <Route path="/collections" element={<Collections />} />
+            <Route path="/collections" element={<Collections />} />
 
-          <Route path="/collectionitems" element={<CollectionItems />} />
+            <Route path="/collectionitems" element={<CollectionItems />} />
 
-          <Route path="/iteminfo" element={<WishlistItemInfo />} />
+            <Route path="/iteminfo" element={<WishlistItemInfo />} />
 
-          <Route path="/userprofile" element={<UserProfile />} />
+            <Route path="/userprofile" element={<UserProfile />} />
 
-          <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<NotFound />} />
 
-        </Routes>
+          </Routes>
 
-      </BrowserRouter>
-
+        </BrowserRouter>
     )
   )
 }

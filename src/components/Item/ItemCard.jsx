@@ -44,9 +44,14 @@ export default function ItemCard({item_Id, item_name, item_price, date_added}){
                         {/* Button */}
                         <ThemeProvider theme={ customTheme }>
                             <Button 
+                                type="button"
                                 color="primary" 
                                 size="sm" 
-                                className="font-bold my-3">
+                                className="font-bold my-3" 
+                                onClick={ (e) => { 
+                                    e.stopPropagation();
+                                    alert('Hello') 
+                                } }>
                                 Mark as Granted
                             </Button>
                         </ThemeProvider>

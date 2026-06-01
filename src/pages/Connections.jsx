@@ -20,7 +20,9 @@ import MobileNav from '../components/MobileNav.jsx'
 
 export default function Connections(){
 
-    const body_class = 'min-h-[700px]'
+    const body_class    = 'min-h-[100vh]'
+    const content_class = 'mb-[150px]'
+
     const anim_css_slideInLeft = 'animate__animated animate__slideInLeft animate__bounce animate__faster'
 
     // =========== States =============
@@ -56,7 +58,7 @@ export default function Connections(){
                 UserFullname:"User Fullname 3",
                 TotalWishlists:8,
                 TotalGranted:14
-            },
+            }
         ]
     // =========== Data Source END =========
 
@@ -72,7 +74,7 @@ export default function Connections(){
 
 
     return (
-        <div>
+        <div className={ body_class }>
 
             {/* =================== TOP NAVIGATION ================= */}
                 <TopNav />
@@ -82,7 +84,7 @@ export default function Connections(){
                 {/* <Banner bannertype={bannertype} /> */}
             {/* =================== BANNER END =============== */}
 
-            <div className={`${body_class} ${anim_css_slideInLeft}`}>
+            <div className={`${anim_css_slideInLeft} ${ content_class }`}>
 
 
                 {/* ============== SEARCH BAR =============== */}
@@ -90,7 +92,8 @@ export default function Connections(){
                         <label htmlFor="search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                         <div className="relative">
                             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                <FontAwesomeIcon icon={faSearch} />
+                                {/* <FontAwesomeIcon icon={faSearch} /> */}
+                                <ion-icon class="2xl" name="search-outline"></ion-icon>
                             </div>
                             <input 
                                 type="search" 
@@ -149,7 +152,8 @@ export default function Connections(){
                                                         </ThemeProvider>
                                                     </div>
                                                     <div className="text-base font-semibold text-gray-900">
-                                                        <FontAwesomeIcon icon={faEllipsisV} />
+                                                        {/* <FontAwesomeIcon icon={faEllipsisV} /> */}
+                                                        <ion-icon class="" name="ellipsis-vertical-outline">/</ion-icon>
                                                     </div>
                                                 </div>
                                             </li>

@@ -11,6 +11,11 @@ import MobileNav from '../components/MobileNav.jsx'
 
 export default function Collections() {
 
+    const body_class    = 'min-h-[100vh]'
+    const content_class = 'mb-[150px]'
+
+    const anim_css_slideInLeft = 'animate__animated animate__slideInUp animate__bounce animate__faster'
+
     const navigate = useNavigate();
 
     const topChoices = [
@@ -43,14 +48,14 @@ export default function Collections() {
 
     return (
 
-        <div>
+        <div className={ body_class }>
 
             {/* =================== TOP NAVIGATION ================= */}
                 <TopNav />
             {/* =================== TOP NAVIGATION END ============= */}
 
             {/* Modal */}
-            <div className="min-h-[700px] w-[360px] bg-white overflow-hidden">
+            <div className={`${anim_css_slideInLeft} ${ content_class }`}>
 
                 {/* Header */}
                 <div className="py-4 text-center font-semibold text-lg border-b">
@@ -122,7 +127,7 @@ export default function Collections() {
                     <ThemeProvider theme={customTheme}>
                         <Button 
                             type="button"
-                            color="light" 
+                            color="primary" 
                             className="
                                 font-bold 
                                 rounded-md

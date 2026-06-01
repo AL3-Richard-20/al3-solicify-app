@@ -24,11 +24,14 @@ export default function WishList(){
     const navigate = useNavigate()
 
     // ========== Tailwind Classes ============
-        const body_class = 'min-h-[700px]'
-        const flex_class = "flex items-center justify-between mb-1 pl-2 pt-2 pb-8 fixed left-[270px] bottom-[55px] w-[100%] bg-transparent"
+        const body_class    = 'min-h-[100vh]'
+        const content_class = 'mb-[150px]'
+
+        const anim_css_slideInLeft = 'animate__animated animate__slideInLeft animate__bounce animate__faster'
+
+        const flex_class = "flex items-center justify-end sticky bottom-[85px] w-[100%] bg-transparent"
     // ========== Tailwind Classes END ========
 
-    const anim_css_slideInLeft = 'animate__animated animate__slideInLeft animate__bounce animate__faster'
 
     const [bannertype, setBannerType] = useState("Wishlist")
 
@@ -68,14 +71,14 @@ export default function WishList(){
     }
 
     return (
-        <div>
+        <div className={ body_class }>
 
             {/* =================== TOP NAVIGATION ================= */}
                 <TopNav />
             {/* =================== TOP NAVIGATION END ============= */}
 
             {/* =================== CONTENT ================ */}
-            <div className={ `${body_class} ${anim_css_slideInLeft}` } id="my_wishlist_div">
+            <div className={ `${anim_css_slideInLeft} ${ content_class }` } id="my_wishlist_div">
 
                 <div className="m-4 mt-10">
                     <h4 className="font-bold">My Wishlist</h4>
@@ -110,7 +113,7 @@ export default function WishList(){
                     </div>
                 {/* ============== FILTER TAB END ========= */}
 
-                <div id="wishlist_items" className="flex items-center flex-wrap justify-between">
+                <div id="wishlist_items" className="flex items-center flex-wrap justify-between gap-4 m-2">
                     { 
                         wishlists_arr.map((wishlist, index) => (
 
@@ -131,8 +134,10 @@ export default function WishList(){
             {/* =================== ADD NEW (COLLECTION OR WISHLIST) ============= */}
                 <NavLink to="/newwishlist" className={ flex_class }>
                     <ThemeProvider theme={customTheme}>
-                        <Button type="button" color="primary" className="h-[50px] rounded">
-                            <FontAwesomeIcon className="text-3xl" icon={faPlus}/>
+                        <Button type="button" color="primary" className="h-[50px] rounded m-1">
+                            {/* <FontAwesomeIcon className="text-3xl" icon={faPlus}/> */}
+                            <ion-icon class="text-3xl" name="add-outline"></ion-icon>
+                            {/* Add New */}
                         </Button>
                     </ThemeProvider>
                 </NavLink>
